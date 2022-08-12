@@ -19,15 +19,15 @@ async def swagger_ui_html(request: Request):
 
     site_name = app.extra.get("site_name", "Swagger UI")
 
-    swagger_css_url = app.extra.get("swagger_css_url", "/swagger-ui.min.css")
+    swagger_css_url = app.extra.get("swagger_css_url", "/assets/swagger-ui.min.css")
     if swagger_css_url.startswith("/"):
         swagger_css_url = request.url_for("static", path=swagger_css_url)
 
-    swagger_favicon_url = app.extra.get("swagger_favicon_url", "/favicon.ico")
+    swagger_favicon_url = app.extra.get("swagger_favicon_url", "/assets/favicon.ico")
     if swagger_favicon_url.startswith("/"):
         swagger_favicon_url = request.url_for("static", path=swagger_favicon_url)
 
-    swagger_js_url = app.extra.get("swagger_js_url", "/swagger-ui-bundle.min.js")
+    swagger_js_url = app.extra.get("swagger_js_url", "/assets/swagger-ui-bundle.min.js")
     if swagger_js_url.startswith("/"):
         swagger_js_url = request.url_for("static", path=swagger_js_url)
 

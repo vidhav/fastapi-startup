@@ -23,10 +23,10 @@ This is an opinionated way to start FastAPI:
 - Endpoint `/ping` responds with the plain text response "pong".
 - Mounts static directory at `/static` (default).
 - Title and site name in Swagger
-- Swagger assets:
-  - Expects a Favicon - `favicon.ico` - in the static directory.
-  - Expects Swagger CSS - `./static/swagger-ui.min.css` - in the static directory.
-  - Expects Swagger JS - `./static/swagger-ui-bundle.min.js` - in the static directory.
+- Assets (expects these files in the directory `./static/assets`):
+  - Favicon - `favicon.ico`.
+  - Swagger CSS - `swagger-ui.min.css`.
+  - Swagger Bundle JS - `swagger-ui-bundle.min.js`.
 
 ## Config
 
@@ -36,8 +36,8 @@ Configure FastAPI as usual. Extra arguments (that can be accessed from `app.extr
 | --- | --- | --- |
 | `site_name` | Swagger UI | Displayed in the Swagger title, with `app.title`. |
 | `static_dir` | static | Where to mount the static directory. |
-| `swagger_css_url` | /swagger-ui.min.css | URL to Swagger UI CSS file. |
-| `swagger_favicon_url` | /favicon.ico | URL to your Favicon. |
-| `swagger_js_url` | /swagger-ui-bundle.min.js | URL to Swagger JS bundle file. |
+| `swagger_css_url` | /assets/swagger-ui.min.css | URL to Swagger UI CSS file. |
+| `swagger_favicon_url` | /assets/favicon.ico | URL to your Favicon. |
+| `swagger_js_url` | /assets/swagger-ui-bundle.min.js | URL to Swagger JS bundle file. |
 
 *If the `swagger_` arguments starts with a "/", they will be loaded from "static", else it will be treated as a URL.*
