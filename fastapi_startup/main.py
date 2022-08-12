@@ -18,17 +18,18 @@ async def swagger_ui_html(request: Request):
     oauth2_redirect_url = root_path + app.swagger_ui_oauth2_redirect_url
 
     site_name = app.extra.get("site_name", "Swagger UI")
+    static_dir = app.extra.get("static_dir", "static")
 
     swagger_css_url = app.extra.get("swagger_css_url", "/assets/swagger-ui.min.css")
-    if swagger_css_url.startswith("/"):
+    if static_dir and swagger_css_url.startswith("/"):
         swagger_css_url = request.url_for("static", path=swagger_css_url)
 
     swagger_favicon_url = app.extra.get("swagger_favicon_url", "/assets/favicon.ico")
-    if swagger_favicon_url.startswith("/"):
+    if static_dir and swagger_favicon_url.startswith("/"):
         swagger_favicon_url = request.url_for("static", path=swagger_favicon_url)
 
     swagger_js_url = app.extra.get("swagger_js_url", "/assets/swagger-ui-bundle.min.js")
-    if swagger_js_url.startswith("/"):
+    if static_dir and swagger_js_url.startswith("/"):
         swagger_js_url = request.url_for("static", path=swagger_js_url)
 
     return get_swagger_ui_html(
@@ -56,11 +57,13 @@ class FastAPIStartup(FastAPI):
         static_dir = self.extra.get("static_dir", "static")
 
         super().setup()
-        self.mount(
-            path="/static",
-            app=StaticFiles(directory=static_dir),
-            name="static",
-        )
+
+        if static_dir:
+            self.mount(
+                path="/static",
+                app=StaticFiles(directory=static_dir),
+                name="static",
+            )
 
         self.add_api_route(
             endpoint=ping,

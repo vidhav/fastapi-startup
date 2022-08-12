@@ -35,9 +35,9 @@ Configure FastAPI as usual. Extra arguments (that can be accessed from `app.extr
 | Name | Default | Description |
 | --- | --- | --- |
 | `site_name` | Swagger UI | Displayed in the Swagger title, with `app.title`. |
-| `static_dir` | static | Where to mount the static directory. |
+| `static_dir` | static | Where to mount the static directory. Disabled if value is falsy. |
 | `swagger_css_url` | /assets/swagger-ui.min.css | URL to Swagger UI CSS file. |
 | `swagger_favicon_url` | /assets/favicon.ico | URL to your Favicon. |
 | `swagger_js_url` | /assets/swagger-ui-bundle.min.js | URL to Swagger JS bundle file. |
 
-*If the `swagger_` arguments starts with a "/", they will be loaded from "static", else it will be treated as a URL.*
+*If the `swagger_` arguments starts with a "/" and static is mounted, they will be loaded from "static", else it will be treated as a URL.*
