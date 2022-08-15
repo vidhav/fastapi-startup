@@ -13,7 +13,7 @@ async def ping():
 
 async def swagger_ui_html(request: Request):
     app: FastAPI = request.app
-    root_path = app.root_path.rstrip("/")
+    root_path = request.scope.get("root_path", "").rstrip("/")
     openapi_url = root_path + app.openapi_url
     oauth2_redirect_url = root_path + app.swagger_ui_oauth2_redirect_url
 
